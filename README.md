@@ -1,0 +1,2 @@
+# SchedulerFX
+JavaFX project
