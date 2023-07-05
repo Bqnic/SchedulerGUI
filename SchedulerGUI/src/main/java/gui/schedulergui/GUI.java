@@ -23,41 +23,24 @@ public class GUI extends Application {
     }
 
     private Stage primaryStage;
-    private BorderPane rootLayout;
 
     @Override
     public void start(Stage stage) throws IOException {
         this.primaryStage = stage;
         this.primaryStage.setTitle("SchedulerGUI");
 
-        //initRootLayout();
         showTasksOverview();
     }
-
-    /*public void initRootLayout(){
-        try{
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(GUI.class.getResource("RootLayout.fxml"));
-            rootLayout = loader.load();
-
-            Scene scene = new Scene(rootLayout);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 
     public void showTasksOverview(){
         try{
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(GUI.class.getResource("hello-view.fxml"));
-            AnchorPane taskOverview = loader.load();
+            loader.setLocation(GUI.class.getResource("mainGUI.fxml"));
+            BorderPane taskOverview = loader.load();
 
             Scene scene = new Scene(taskOverview);
             primaryStage.setScene(scene);
             primaryStage.show();
-            //rootLayout.setCenter(taskOverview);
 
             Controller controller = loader.getController();
             controller.setGUI(this);

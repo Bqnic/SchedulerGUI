@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.schedulergui.TaskEditDialogController">
+<AnchorPane prefHeight="400.0" prefWidth="640.0" styleClass="background" stylesheets="@styling.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.schedulergui.TaskEditDialogController">
    <children>
       <BorderPane layoutX="-2.0" prefHeight="342.0" prefWidth="640.0" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0">
          <center>
-            <GridPane prefHeight="359.0" prefWidth="607.0">
+            <GridPane prefHeight="359.0" prefWidth="607.0" styleClass="background" stylesheets="@styling.css">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="154.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="461.0" minWidth="10.0" prefWidth="246.0" />
@@ -32,7 +32,7 @@
               </rowConstraints>
                <children>
                   <TextField fx:id="nameField" prefHeight="39.0" prefWidth="234.0" GridPane.columnIndex="1" />
-                  <Label text="Name: ">
+                  <Label stylesheets="@styling.css" text="Name: ">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -56,7 +56,7 @@
                   <DatePicker fx:id="deadlinePicker" prefHeight="39.0" prefWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <SplitMenuButton fx:id="priorityField" layoutX="96.0" layoutY="38.0" mnemonicParsing="false" text="SplitMenuButton" textAlignment="CENTER" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="96.0" AnchorPane.rightAnchor="96.0" AnchorPane.topAnchor="38.0">
+                        <SplitMenuButton fx:id="priorityField" layoutX="96.0" layoutY="38.0" mnemonicParsing="false" stylesheets="@styling.css" text="SplitMenuButton" textAlignment="CENTER" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="96.0" AnchorPane.rightAnchor="96.0" AnchorPane.topAnchor="38.0">
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#highPriority" text="HIGH" />
                             <MenuItem mnemonicParsing="false" onAction="#mediumPriority" text="MEDIUM" />
@@ -71,7 +71,7 @@
       </BorderPane>
       <ButtonBar layoutX="438.0" layoutY="360.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="5.0">
         <buttons>
-          <Button mnemonicParsing="false" onAction="#applyButton" text="Apply" />
+          <Button mnemonicParsing="false" onAction="#applyButton" stylesheets="@styling.css" text="Apply" />
             <Button mnemonicParsing="false" onAction="#cancelButton" text="Cancel" />
         </buttons>
       </ButtonBar>

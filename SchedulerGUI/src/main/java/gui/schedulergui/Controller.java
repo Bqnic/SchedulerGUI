@@ -1,13 +1,14 @@
 package gui.schedulergui;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.stage.Modality;
 import utilites.Priority;
 import utilites.Task;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 public class Controller {
     @FXML
@@ -23,6 +24,8 @@ public class Controller {
 
    @FXML
    private Label taskDetails;
+   @FXML
+   private Label taskName;
 
     private GUI gui;
 
@@ -42,20 +45,36 @@ public class Controller {
     @FXML
     private void deleteTask(){
         int selectedIndex = taskTable.getSelectionModel().getSelectedIndex();
-        if (selectedIndex >= 0)
-            taskTable.getItems().remove(selectedIndex);
+        if (selectedIndex >= 0) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirm");
+            alert.setHeaderText("Are you sure you want to delete the selected task?");
+
+            ButtonType buttonTypeYes = new ButtonType("Yes");
+            ButtonType buttonTypeNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+            Optional<ButtonType> buttonType = alert.showAndWait();
+
+            if (buttonType.isPresent() && buttonType.get() == buttonTypeYes)
+                taskTable.getItems().remove(selectedIndex);
+        }
     }
 
     @FXML
     public void showTaskDetails(Task task){
-        if (task != null)
+        if (task != null) {
             taskDetails.setText(task.getDetails());
-
+            taskName.setText(task.getName());
+        }
         else{
             taskDetails.setText("");
+            taskName.setText("");
         }
 
         taskDetails.setWrapText(true);
+        taskName.setWrapText(true);
     }
 
     @FXML
