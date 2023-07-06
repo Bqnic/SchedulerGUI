@@ -9,7 +9,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import main.TaskLoader;
+import loader.CompartmentLoader;
+import loader.TaskLoader;
+import utilites.Compartment;
 import utilites.Task;
 
 import java.io.IOException;
@@ -17,9 +19,11 @@ import java.io.IOException;
 public class GUI extends Application {
 
     private ObservableList<Task> tasks = FXCollections.observableArrayList();
+    private ObservableList<Compartment> compartments = FXCollections.observableArrayList();
 
-    public GUI(){
+    public GUI() {
         tasks = TaskLoader.loadTasks();
+        compartments = CompartmentLoader.loadCompartments();
     }
 
     private Stage primaryStage;
@@ -50,7 +54,7 @@ public class GUI extends Application {
         }
     }
 
-    public void showEditTaskOverview(Task task, boolean newTask){
+    public Task showEditTaskOverview(Task task, boolean newTask){
         try{
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(GUI.class.getResource("TaskEditDialog.fxml"));
@@ -66,16 +70,50 @@ public class GUI extends Application {
 
             //Giving task to controller
             TaskEditDialogController controller = loader.getController();
+            controller.setGUI(this);
             controller.setDialogStage(dialogStage);
             controller.setTask(task);
 
-            //show
             dialogStage.showAndWait();
 
             //if it's a new task and the input is alright, add it to the taskTable
             if (newTask && controller.isOkInput()){
                 Task t = controller.getTask();
                 tasks.add(t);
+                return t;
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return null;
+    }
+
+    public void showEditCompartmentDialog(){
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("CompartmentEditDialog.fxml"));
+            BorderPane editCompartment = loader.load();
+
+            //Creating dialog stage
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Compartment");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(editCompartment);
+            dialogStage.setScene(scene);
+
+            //Giving compartment to controller
+            CompartmentEditDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+
+            dialogStage.showAndWait();
+
+            if (controller.isOkInput()) {
+                Compartment compartment = controller.getCompartment();
+                if (!compartments.contains(compartment))
+                    compartments.add(compartment);
             }
 
         } catch (IOException e) {
@@ -85,6 +123,10 @@ public class GUI extends Application {
 
     public ObservableList<Task> getTasks() {
         return tasks;
+    }
+
+    public ObservableList<Compartment> getCompartments() {
+        return compartments;
     }
 
     public static void main(String[] args) {

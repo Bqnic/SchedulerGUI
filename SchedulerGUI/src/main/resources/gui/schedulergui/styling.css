@@ -27,6 +27,11 @@
     -fx-background-color: #1d1d1d;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
+    -fx-border-color:
+            transparent
+            derive(-fx-base, 20%)
+            transparent
+            derive(-fx-base, 20%);
     -fx-padding: 5;
 }
 
@@ -58,8 +63,14 @@
     -fx-background-color: -fx-focus-color;
 }
 
+.table-view .table-row-cell:selected{
+    -fx-background-color: transparent;
+    -fx-border-color: -fx-focus-color;
+}
+
 .table-row-cell .table-cell{
     -fx-border-color: transparent;
+    -fx-text-fill: white;
 }
 
 .context-menu {
@@ -152,6 +163,15 @@
 
 .menu-item:focused{
     -fx-background-color: -fx-focus-color;
+}
+
+.choice-box{
+    -fx-background-color: #1d1d1d;
+    -fx-border-color: #e2e2e2;
+}
+
+.choice-box:focused{
+    -fx-border-color: -fx-focus-color;
 }
 
 

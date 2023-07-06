@@ -16,6 +16,7 @@ public class Task implements Comparable<Task>{
     private final ObjectProperty<LocalDate> dateOfCreation;
     private final ObjectProperty<LocalDate> deadline;
     private final StringProperty details;
+    private final ObjectProperty<Compartment> compartment;
 
     public Task(String name, Priority priority, LocalDate dateOfCreation, LocalDate deadline) {
         StringProperty nameProperty = new SimpleStringProperty(name);
@@ -28,6 +29,7 @@ public class Task implements Comparable<Task>{
         this.dateOfCreation = dateObjectProperty;
         this.deadline = deadlineProperty;
         this.details = new SimpleStringProperty("No details for this task.");
+        this.compartment = new SimpleObjectProperty<>(new Compartment("GENERAL"));
     }
 
     public Task(){
@@ -36,6 +38,7 @@ public class Task implements Comparable<Task>{
         this.dateOfCreation = new SimpleObjectProperty<>(LocalDate.now());
         this.deadline = new SimpleObjectProperty<>(LocalDate.now());
         this.details = new SimpleStringProperty("");
+        this.compartment = new SimpleObjectProperty<>(new Compartment("GENERAL"));
     }
 
     public Task(String name, Priority priority, LocalDate dateOfCreation, LocalDate deadline, String details) {
@@ -50,10 +53,35 @@ public class Task implements Comparable<Task>{
         this.dateOfCreation = dateObjectProperty;
         this.deadline = deadlineProperty;
         this.details = detailsProperty;
+        this.compartment = new SimpleObjectProperty<>(new Compartment("GENERAL"));
     }
 
-    public int getTimeUntilDeadline(){
-         return Period.between(dateOfCreation.get(), deadline.get()).getDays();
+    public Task(String name, Priority priority, LocalDate dateOfCreation, LocalDate deadline, String details, String compartment) {
+        StringProperty nameProperty = new SimpleStringProperty(name);
+        ObjectProperty<Priority> priorityObjectProperty = new SimpleObjectProperty<>(priority);
+        ObjectProperty<LocalDate> dateObjectProperty = new SimpleObjectProperty<>(dateOfCreation);
+        ObjectProperty<LocalDate> deadlineProperty = new SimpleObjectProperty<>(deadline);
+        StringProperty detailsProperty = new SimpleStringProperty(details);
+        ObjectProperty<Compartment> compartmentProperty = new SimpleObjectProperty<>(new Compartment(compartment));
+
+        this.name = nameProperty;
+        this.priority = priorityObjectProperty;
+        this.dateOfCreation = dateObjectProperty;
+        this.deadline = deadlineProperty;
+        this.details = detailsProperty;
+        this.compartment = compartmentProperty;
+    }
+
+    public Compartment getCompartment() {
+        return compartment.get();
+    }
+
+    public ObjectProperty<Compartment> compartmentProperty() {
+        return compartment;
+    }
+
+    public void setCompartment(Compartment compartment) {
+        this.compartment.set(compartment);
     }
 
     public String getName() {

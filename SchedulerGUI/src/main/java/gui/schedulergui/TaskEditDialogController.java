@@ -3,6 +3,7 @@ package gui.schedulergui;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import utilites.Compartment;
 import utilites.Priority;
 import utilites.Task;
 
@@ -19,11 +20,17 @@ public class TaskEditDialogController {
     private SplitMenuButton priorityField;
     @FXML
     private TextArea detailsField;
-
+    @FXML
+    private ChoiceBox<Compartment> compartmentChoice;
     private Task task;
     private Stage dialogStage;
     private boolean okInput = false;
 
+    private GUI gui;
+    public void setGUI(GUI gui){
+        this.gui = gui;
+        compartmentChoice.setItems(gui.getCompartments());
+    }
     public void setTask(Task task){
         this.task = task;
         nameField.setText(task.getName());
@@ -52,6 +59,7 @@ public class TaskEditDialogController {
             task.setDeadline(deadlinePicker.getValue() == null ? LocalDate.now() : deadlinePicker.getValue());
             task.setDetails(detailsField.getText());
             task.setPriority(Priority.valueOf(priorityField.getText()));
+            task.setCompartment(compartmentChoice.getValue() == null ? new Compartment("GENERAL") : compartmentChoice.getValue());
             okInput = true;
         }
 

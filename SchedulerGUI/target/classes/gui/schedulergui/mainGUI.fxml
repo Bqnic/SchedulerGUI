@@ -67,9 +67,9 @@
               <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="Add">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem fx:id="newCompartmentMenuItem" mnemonicParsing="false" onAction="#setNewCompartmentMenuItem" text="New Compartment" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
@@ -80,4 +80,15 @@
         </menus>
       </MenuBar>
    </top>
+   <left>
+      <AnchorPane prefHeight="600.0" prefWidth="173.0" styleClass="background" stylesheets="@styling.css" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="compartmentTable" prefHeight="602.0" prefWidth="173.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columns>
+                <TableColumn fx:id="compartmentNameColumn" prefWidth="166.0" style="-fx-opacity: 0.8; -fx-alignment: center; -fx-font-family: Segoe UI Semilight;" text="Compartment" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </left>
 </BorderPane>
