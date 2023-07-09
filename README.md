@@ -49,12 +49,10 @@ Now, you should have a clickable file on your desktop that launches your JavaFX 
 # After completing all of the above
 Now you should have successfully entered the SchedulerGUI, read Help to see all available key combinations.
 
-![image](https://github.com/Bqnic/SchedulerGUI/assets/123201175/fadabd2e-0091-4fc1-8936-7ab028ff8eed)
 
+![alt text](https://github.com/Bqnic/SchedulerGUI/blob/main/screenshots/empty.png?raw=true)
 
-![image](https://github.com/Bqnic/SchedulerGUI/assets/123201175/998e60e9-c2fa-43f6-a895-42f6e6b4c1d0)
+![alt text](https://github.com/Bqnic/SchedulerGUI/blob/main/screenshots/someTasks.png?raw=true)
 
-![image](https://github.com/Bqnic/SchedulerGUI/assets/123201175/5d0ad8d4-2ba0-4327-aa0c-391c394f6e41)
-
-
+![alt text](https://github.com/Bqnic/SchedulerGUI/blob/main/screenshots/completed.png?raw=true)
 
