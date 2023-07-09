@@ -37,6 +37,7 @@ public class TaskEditDialogController {
         deadlinePicker.setPromptText(task.getDeadline().toString());
         priorityField.setText(task.getPriority().toString());
         detailsField.setText(task.getDetails());
+        compartmentChoice.setValue(task.getCompartment());
         detailsField.setWrapText(true);
     }
 

@@ -4,6 +4,7 @@ import gui.schedulergui.GUI;
 import gui.schedulergui.utilities.Priority;
 import gui.schedulergui.utilities.Task;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,7 +44,7 @@ public class Controller {
     private GUI gui;
     private ObservableList<Task> allTasks = FXCollections.observableArrayList();
     private String currentCompartment;
-    private boolean saved = false;
+    private boolean saved = true;
 
     @FXML
     private void initialize(){
@@ -89,6 +90,7 @@ public class Controller {
 
         //enabling key combinations for shortcuts on compartments
         compartmentTable.setOnKeyPressed(this::KeyCombinationsForCompartmentTable);
+
     }
 
     //method that adds key combinations to GUI (primarily, so I can delete with "Delete" button lol)
@@ -170,6 +172,11 @@ public class Controller {
                 Task taskToComplete = taskTable.getItems().get(selectedIndex);
                 taskTable.getItems().remove(taskToComplete);
                 allTasks.remove(taskToComplete);
+
+                //Adding compartment name to completed task
+                if (!Objects.equals(taskToComplete.getCompartment(), "All tasks"))
+                    taskToComplete.setName(taskToComplete.getCompartment() + " - " + taskToComplete.getName());
+
                 completedTasks.add(taskToComplete);
                 saved = false;
             }
@@ -270,14 +277,25 @@ public class Controller {
         ObservableList<Task> items;
 
         if (Objects.equals(compartmentName, "All tasks")){
+            nameColumn.setCellValueFactory(taskStringCellDataFeatures ->
+                    Bindings.concat(
+                            Objects.equals(taskStringCellDataFeatures.getValue().compartmentProperty().get(), "All tasks") ? "" : taskStringCellDataFeatures.getValue().compartmentProperty(),
+                            Objects.equals(taskStringCellDataFeatures.getValue().compartmentProperty().get(), "All tasks") ? "" : new SimpleStringProperty(" - "),
+                            taskStringCellDataFeatures.getValue().nameProperty()
+                    )
+            );
             items = allTasks.stream()
                     .collect(Collectors.toCollection(FXCollections::observableArrayList));
+
         }
         else {
+            nameColumn.setCellValueFactory(taskStringCellDataFeatures -> taskStringCellDataFeatures.getValue().nameProperty());
              items = allTasks.stream()
                             .filter(item -> item.getCompartment().equals(compartmentName))
                             .collect(Collectors.toCollection(FXCollections::observableArrayList));
         }
+
+        taskTable.refresh();
 
         taskTable.setItems(items);
         currentCompartment = compartmentName;
@@ -291,6 +309,11 @@ public class Controller {
         gui.saveCompletedTasks();
     }
 
+    @FXML
+    private void tips(){
+        gui.showTipsScene();
+    }
+
     public void setGUI (GUI gui){
         this.gui = gui;
 
@@ -298,7 +321,7 @@ public class Controller {
         compartmentTable.setItems(gui.getCompartments());
 
         //Activates when user tries to exit the app
-        gui.primaryStage.setOnCloseRequest(e -> savingTasks(e));
+        gui.primaryStage.setOnCloseRequest(this::savingTasks);
     }
 
     //dynamically changes the position of context menu (in case of window resizing)
@@ -318,6 +341,9 @@ public class Controller {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Exit without saving?");
             alert.setHeaderText("Save before exiting?");
+
+            ButtonType doNotSave = new ButtonType("Do not save");
+            alert.getButtonTypes().add(doNotSave);
             Optional<ButtonType> answer = alert.showAndWait();
 
             if (answer.isPresent() && answer.get() == ButtonType.OK) {
@@ -326,6 +352,9 @@ public class Controller {
                 gui.saveCompletedTasks();
                 Platform.exit();
             }
+
+            else if (answer.isPresent() && answer.get() == doNotSave)
+                Platform.exit();
 
             else e.consume();
 

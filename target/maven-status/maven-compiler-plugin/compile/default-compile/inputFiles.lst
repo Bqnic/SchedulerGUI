@@ -1,0 +1,12 @@
+/home/bonic/Documents/programiranje/Projekti/SchedulerGUI/src/main/java/module-info.java
+/home/bonic/Documents/programiranje/Projekti/SchedulerGUI/src/main/java/gui/schedulergui/controllers/CompletedTasksDialog.java
+/home/bonic/Documents/programiranje/Projekti/SchedulerGUI/src/main/java/gui/schedulergui/utilities/Task.java
+/home/bonic/Documents/programiranje/Projekti/SchedulerGUI/src/main/java/gui/schedulergui/utilities/CompartmentWrapper.java
+/home/bonic/Documents/programiranje/Projekti/SchedulerGUI/src/main/java/gui/schedulergui/controllers/Controller.java
+/home/bonic/Documents/programiranje/Projekti/SchedulerGUI/src/main/java/gui/schedulergui/controllers/TaskEditDialogController.java
+/home/bonic/Documents/programiranje/Projekti/SchedulerGUI/src/main/java/gui/schedulergui/utilities/LocalDateAdapter.java
+/home/bonic/Documents/programiranje/Projekti/SchedulerGUI/src/main/java/gui/schedulergui/controllers/CompartmentEditDialogController.java
+/home/bonic/Documents/programiranje/Projekti/SchedulerGUI/src/main/java/gui/schedulergui/GUI.java
+/home/bonic/Documents/programiranje/Projekti/SchedulerGUI/src/main/java/gui/schedulergui/Main.java
+/home/bonic/Documents/programiranje/Projekti/SchedulerGUI/src/main/java/gui/schedulergui/utilities/Priority.java
+/home/bonic/Documents/programiranje/Projekti/SchedulerGUI/src/main/java/gui/schedulergui/utilities/TaskWrapper.java
