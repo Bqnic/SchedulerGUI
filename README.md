@@ -72,3 +72,7 @@ Now you should have successfully entered the SchedulerGUI, read Help to see all 
 
 ![alt text](https://github.com/Bqnic/SchedulerGUI/blob/main/screenshots/completed.png?raw=true)
 
+#Additional notes
+Being able to set deadline to any date is not a bug but a feature (it's hilarious)
+
+Upon opening the app for the first time, in your Documents directory a save folder will be created for tasks, if you move or delete or in anyway change this directory nothing will work
