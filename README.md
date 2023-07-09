@@ -10,7 +10,7 @@ Also, you can track your completed tasks, and number of your completed tasks.
 # How to start SchedulerGUI
 (Of course you need to have Java properly set up on your PC)
 
-You can't run the .jar file with version of Java Runtime higher than 52.0!
+You can't run the .jar file with version of Java Runtime lower than 61.0!
 
 In the root directory -> target, there you will find SchedulerGUI.jar, .jar file is not executable by nature and to run it you will have to use terminal/CMD.
 
