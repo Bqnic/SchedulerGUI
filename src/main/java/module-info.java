@@ -1,5 +1,7 @@
 module gui.schedulergui {
+    requires javafx.graphics;
     requires javafx.controls;
+    requires javafx.base;
     requires javafx.fxml;
     requires java.xml.bind;
 
