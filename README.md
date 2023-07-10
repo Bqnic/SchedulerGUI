@@ -60,7 +60,7 @@ Save the desktop launcher: Save the desktop launcher. It should create a shortcu
 
 Now, you should have a clickable file on your desktop that launches your JavaFX project when you click on it. Just double-click the launcher, and it will execute the script.
 
-# Windows version not made yet
+# Linux exclusive (totally on purpose)
 
 # After completing all of the above
 Now you should have successfully entered the SchedulerGUI, read Help to see all available key combinations.
